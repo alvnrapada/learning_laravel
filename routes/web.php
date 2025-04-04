@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Job;
+use App\Models\Employer;
 
 Route::get('/', function () {
     return view('home', [
@@ -10,18 +11,36 @@ Route::get('/', function () {
 });
 
 Route::get('/jobs', function () {
-    $jobs = Job::with('employer')->simplePaginate(12);
+    $jobs = Job::with('employer')->latest()->simplePaginate(12);
 
-    return view('jobs', [
+    return view('jobs.index', [
         'jobs' => $jobs
     ]);
 });
 
+Route::get('/jobs/create', function () {
+    $employers = Employer::all();
+    return view('jobs.create', [
+        'employers' => $employers
+    ]);
+});
+
 Route::get('/jobs/{id}', function ($id) {
-    return view('job', [
+    return view('jobs.show', [
         'job' => Job::find($id)
     ]);
 });
+
+Route::post('/jobs', function () {
+
+    Job::create([
+        'title' => request('title'),
+        'salary' => request('salary'),
+        'employer_id' => request('employer_id')
+    ]);
+
+    return redirect('/jobs');
+}); 
 
 Route::get('/contact', function () {
     return view('contact');
