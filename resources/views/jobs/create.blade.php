@@ -5,7 +5,7 @@
     </p>
     <form action="/jobs" method="POST">
         @csrf
-       <div class="space-y-12">
+       <div class="space-y-6">
             <div class="pb-6">
                 <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                     <div class="sm:col-span-3">
@@ -13,23 +13,29 @@
                         <div class="mt-2">
                             <input placeholder="Software Engineer" type="text" name="title" id="title"
                                 autocomplete="title"
-                                class="border border-gray-300 block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                                class="border border-gray-300 block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" required>
                         </div>
+                        @error('title')
+                            <p class="italic text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div class="sm:col-span-3">
                         <label for="salary" class="block text-sm/6 font-medium text-gray-900">Salary</label>
                         <div class="mt-2">
                             <input placeholder="$50,000 USD" type="text" name="salary" id="salary" autocomplete="salary"
-                                class="border border-gray-300 block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
-                        </div>
+                                class="border border-gray-300 block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" required>
+                            </div>
+                        @error('salary')
+                            <p class="italic text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div class="sm:col-span-3">
                         <label for="country" class="block text-sm/6 font-medium text-gray-900">Employer</label>
                         <div class="mt-2 grid grid-cols-1">
                             <select name="employer_id" id="employer_id" autocomplete="employer-name"
-                                class="border border-gray-300 col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                                class="border border-gray-300 col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" required>
                                 @foreach ($employers as $employer)
                                     <option value="{{ $employer['id'] }}">{{ $employer['name'] }}</option>
                                 @endforeach
@@ -41,6 +47,9 @@
                                     clip-rule="evenodd" />
                             </svg>
                         </div>
+                        @error('employer_id')
+                            <p class="italic text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @enderror
                     </div>
                 </div>
             </div>
