@@ -20,8 +20,16 @@
                 <x-nav-link href="/jobs" :active="request()->is('jobs')">Jobs</x-nav-link>
                 <x-nav-link href="/contact" :active="request()->is('contact')">Contact</x-nav-link>
             </div>
-            <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-              <a href="#" class="text-sm/6 font-semibold text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a>
+            <div class="hidden lg:flex lg:flex-1 lg:justify-end lg:gap-x-6">
+              @auth
+                <form action="/logout" method="POST">
+                  @csrf
+                  <x-form-button>Logout</x-form-button>
+                </form>
+              @else
+                <x-nav-link href="/login" :active="request()->is('login')">Login</x-nav-link>
+                <x-nav-link href="/register" :active="request()->is('register')">Register</x-nav-link>
+              @endauth
             </div>
           </nav>
 
