@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Job;
 use App\Models\Employer;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
+use App\Models\User;
 class JobController extends Controller
 {
     public function index()
@@ -33,6 +36,10 @@ class JobController extends Controller
     
     public function edit(Job $job)
     {
+
+        // Manually authorize the user
+        // Gate::authorize('edit-job', $job);
+
         $employers = Employer::all();
 
         return view('jobs.edit', [

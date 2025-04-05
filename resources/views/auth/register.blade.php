@@ -8,19 +8,19 @@
                 <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                     <x-form-field>
                         <x-form-label for="first_name">First Name</x-form-label>
-                        <x-form-input type="text" name="first_name" id="first_name" autocomplete="first_name" required />
+                        <x-form-input type="text" name="first_name" id="first_name" autocomplete="first_name" required :value="old('first_name')" />
                         <x-form-error name="first_name" />
                     </x-form-field>
 
                     <x-form-field>
                         <x-form-label for="last_name">Last Name</x-form-label>
-                        <x-form-input type="text" name="last_name" id="last_name" autocomplete="last_name" required />
+                        <x-form-input type="text" name="last_name" id="last_name" autocomplete="last_name" required :value="old('last_name')" />
                         <x-form-error name="last_name" />
                     </x-form-field>
                     
                     <x-form-field>
                         <x-form-label for="email">Email</x-form-label>
-                        <x-form-input type="email" name="email" id="email" autocomplete="email" required />
+                        <x-form-input type="email" name="email" id="email" autocomplete="email" required :value="old('email')" />
                         <x-form-error name="email" />
                     </x-form-field>
 
